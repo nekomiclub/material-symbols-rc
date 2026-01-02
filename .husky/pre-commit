@@ -1,1 +1,1 @@
-npm run husky
+npx tsc --noEmit && npx vite build && git add .

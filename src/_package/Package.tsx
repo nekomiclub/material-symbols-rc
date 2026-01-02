@@ -1,62 +1,14 @@
 import 'material-symbols';
 
-import { CSSProperties, ElementType, FC } from 'react';
+import { CSSProperties, FC } from 'react';
 import cn from 'clsx';
-import { MaterialSymbol as MaterialSymbolIconType } from 'material-symbols';
+
+import { IMaterialSymbolProps } from './interfaces';
 
 
 
-export interface IMaterialSymbolProps {
-  icon: MaterialSymbolIconType
 
-  /** 
-   * Style of the icon 
-   * 
-   * @default "outlined"
-   */
-  type?: MaterialSymbolType
 
-  /** 
-   * Icon color
-   * 
-   * @default "inherit"
-   */
-  color?: CSSProperties['color']
-
-  /**
-   * Size of the icon in px
-   * 
-   * @default 24
-   */
-  size?: number
-
-  /**
-   * Icon tag
-   * 
-   * @default "span"
-   */
-  as?: ElementType
-
-  /**
-   * Icon weight
-   * 
-   * @default 400
-   */
-  weight?: MaterialSymbolWeight
-
-  /**
-   * Icon fill
-   * 
-   * @default false
-   */
-  fill?: boolean
-
-  className?: string
-  style?: CSSProperties
-}
-
-export type MaterialSymbolWeight = 100 | 200 | 300 | 400 | 500 | 600 | 700
-export type MaterialSymbolType = 'outlined' | 'rounded' | 'sharp'
 
 
 
@@ -82,8 +34,5 @@ export const MaterialSymbol: FC<IMaterialSymbolProps> = ({ icon, ...props }) => 
 };
 
 
-
-/** @deprecated use MaterialSymbolIconType instead */
-export type SymbolCodepoints = MaterialSymbolIconType
 
 export default MaterialSymbol;
