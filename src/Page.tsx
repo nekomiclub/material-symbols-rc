@@ -1,10 +1,12 @@
 import React from 'react';
 
+import MaterialSymbol from './_package/index';
+
 
 
 const Page: React.FC = () => {
   return <>
-    <p className="text-[30px] text-red-400">sfadfsdsdf</p>
+    <MaterialSymbol icon="bookmark_bag" size={64} />
   </>;
 };
 
