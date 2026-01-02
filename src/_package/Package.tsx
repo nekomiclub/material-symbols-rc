@@ -1,6 +1,6 @@
 import 'material-symbols';
 
-import { CSSProperties, FC } from 'react';
+import { FC } from 'react';
 import cn from 'clsx';
 
 import { IMaterialSymbolProps } from './interfaces';
@@ -12,25 +12,38 @@ import { IMaterialSymbolProps } from './interfaces';
 
 
 
-export const MaterialSymbol: FC<IMaterialSymbolProps> = ({ icon, ...props }) => {
+export const MaterialSymbol: FC<IMaterialSymbolProps> = (props) => {
   const Component = props.as ?? 'span';
 
   const type = props.type ?? 'outlined';
-  const fill = props.fill ? 1 : 0;
-  const weight = props.weight ?? 400;
-  const color: CSSProperties['color'] = props.color ?? 'inherit';
-  const size = props.size ?? 24;
+  const color = props.color;
 
-  const style = {
-    'font-variation-settings': `'FILL' ${fill}, 'wght' ${weight}, 'opsz' ${size}`,
-    color,
-    fontSize: size,
-    ...props.style
-  };
+  const style = { color, ...props.style };
 
 
 
-  return <Component className={cn(`material-symbols-${type}`, props.className)} style={style}>{icon}</Component>;
+  if (props.fill) {
+    style.fontVariationSettings = [style.fontVariationSettings, `"FILL" ${Number(props.fill)}`]
+      .filter(Boolean)
+      .join(', ');
+  }
+
+  if (props.weight) {
+    style.fontVariationSettings = [style.fontVariationSettings, `"wght" ${props.weight}`]
+      .filter(Boolean)
+      .join(', ');
+  }
+
+  if (props.size) {
+    style.fontVariationSettings = [style.fontVariationSettings, `"opsz" ${props.size}`]
+      .filter(Boolean)
+      .join(', ');
+    style.fontSize = props.size;
+  }
+
+
+
+  return <Component className={cn(`material-symbols-${type}`, props.className)} style={style}>{props.icon}</Component>;
 };
 
 

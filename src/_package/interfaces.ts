@@ -23,7 +23,7 @@ export interface IMaterialSymbolProps {
   /**
    * Size of the icon in px
    * 
-   * @default 24
+   * @default "inherit"
    */
   size?: number
 
@@ -34,11 +34,7 @@ export interface IMaterialSymbolProps {
    */
   as?: ElementType
 
-  /**
-   * Icon weight
-   * 
-   * @default 400
-   */
+  /** Icon weight */
   weight?: MaterialSymbolWeight
 
   /**
