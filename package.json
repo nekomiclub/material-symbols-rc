@@ -3,12 +3,16 @@
   "version": "1.0.0",
   "description": "Package that adds Material Symbols into your react app!",
   "keywords": [],
-  "repository": "https://github.com/nekomiclub/material-symbols-rc",
+  "homepage": "https://github.com/nekomiclub/material-symbols-rc#readme",
+  "bugs": {
+    "url": "https://github.com/nekomiclub/material-symbols-rc/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nekomiclub/material-symbols-rc.git"
+  },
   "license": "MIT",
   "type": "module",
-  "types": "./dist/index.d.ts",
-  "module": "./dist/index.es.js",
-  "main": "./dist/index.umd.js",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -17,19 +21,17 @@
     },
     "./css": "./dist/styles.css"
   },
+  "main": "./dist/index.umd.js",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist/"
   ],
   "scripts": {
     "dev": "npx eslint . --fix --ext .ts,.tsx && npx vite",
-    "build": "npx rimraf dist && npx tsc && npx vite build"
+    "build": "npx tsc && npx vite build"
   },
-  "publishConfig": {
-    "access": "public"
-  },
-  "peerDependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+  "dependencies": {
+    "material-symbols": "^0.40.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.32.0",
@@ -47,7 +49,6 @@
     "eslint-plugin-unused-imports": "^4.1.4",
     "globals": "^16.3.0",
     "husky": "^9.1.7",
-    "rimraf": "^6.0.1",
     "sass": "^1.90.0",
     "tailwindcss": "^4.1.16",
     "typescript": "~5.8.3",
@@ -55,7 +56,12 @@
     "vite": "^7.1.0",
     "vite-plugin-dts": "^4.5.4"
   },
-  "dependencies": {
-    "material-symbols": "^0.40.2"
-  }
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "module": "./dist/index.es.js"
 }
