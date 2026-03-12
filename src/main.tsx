@@ -1,4 +1,4 @@
-import './styles/general.scss';
+import './styles/normalize.css';
 import './styles/tailwind.css';
 
 import React from 'react';

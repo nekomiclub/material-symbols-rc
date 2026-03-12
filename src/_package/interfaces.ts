@@ -51,7 +51,6 @@ export interface IMaterialSymbolProps {
 export type MaterialSymbolWeight = 100 | 200 | 300 | 400 | 500 | 600 | 700
 export type MaterialSymbolType = 'outlined' | 'rounded' | 'sharp'
 
-
-
 /** @deprecated use MaterialSymbolIconType instead */
-export type SymbolCodepoints = MaterialSymbolIconType
+export type SymbolCodepoints = MaterialSymbolIconType;
+export type { MaterialSymbolIconType };
