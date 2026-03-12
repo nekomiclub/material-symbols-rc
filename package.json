@@ -1,8 +1,11 @@
 {
   "name": "material-symbols-rc",
   "version": "1.1.1",
-  "description": "Package that adds Material Symbols into your react app!",
-  "keywords": [],
+  "description": "Use Material Symbols in react with ease 😮‍💨! ",
+  "keywords": [
+    "react material symbols",
+    "material symbols"
+  ],
   "license": "MIT",
   "type": "module",
   "main": "./dist/index.umd.js",

@@ -1,5 +1,5 @@
-# material-symbols-rc
-Package that adds [Material Symbols](https://fonts.google.com/icons?icon.set=Material+Symbols) into your react app!
+# React Material Symbols
+Use [Material Symbols](https://fonts.google.com/icons?icon.set=Material+Symbols) in react with ease 😮‍💨! 
 
 ![preview](/preview.jpg)
 
@@ -11,7 +11,24 @@ $ pnpm i material-symbols-rc
 $ yarn add material-symbols-rc
 ```
 
-## 📦 Interfaces
+```tsx
+import 'material-symbols-rc/css';
+
+import React from 'react';
+
+import MaterialSymbol from 'material-symbols-rc';
+
+
+
+function App() {
+  return <>
+    <MaterialSymbol icon="bookmark_bag" size={64} />
+  </>;
+}
+
+```
+
+## 📦 API
 
 ```ts
 import { CSSProperties, ElementType } from "react"
@@ -74,7 +91,8 @@ export type MaterialSymbolType = 'outlined' | 'rounded' | 'sharp'
 
 
 /** @deprecated use MaterialSymbolIconType instead */
-export type SymbolCodepoints = MaterialSymbolIconType
+export type SymbolCodepoints = MaterialSymbolIconType;
+export type { MaterialSymbolIconType };
 ```
 
 ## ©️ License
