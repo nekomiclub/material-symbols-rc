@@ -1,24 +1,34 @@
+/** 
+ * @fileoverview eslint general purpose config.
+ * @version nekomi:05.03.2026
+ */
+
 import js from '@eslint/js'
-import globals from 'globals'
 import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 import tseslint from 'typescript-eslint'
-import { globalIgnores } from 'eslint/config'
+import { defineConfig, globalIgnores } from 'eslint/config'
 import pathPlugin from 'eslint-plugin-path';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import unusedImports from 'eslint-plugin-unused-imports';
+import importPlugin from 'eslint-plugin-import';
 
-export default tseslint.config([globalIgnores(['dist']), {
+
+
+export default defineConfig([globalIgnores(['**/node_modules', '**/dist', '**/build']), {
   files: ['**/*.{ts,tsx}'],
+
   extends: [
     js.configs.recommended,
     tseslint.configs.recommended,
-    reactHooks.configs['recommended-latest'],
+    reactHooks.configs.flat.recommended,
     reactRefresh.configs.vite,
+    importPlugin.flatConfigs.typescript
   ],
+
   languageOptions: {
-    ecmaVersion: 2020,
-    globals: globals.browser,
+    ecmaVersion: 'latest',
+    sourceType: 'module',
   },
 
   plugins: {
@@ -29,19 +39,34 @@ export default tseslint.config([globalIgnores(['dist']), {
 
   rules: {
     'semi': ['warn', 'always'],
-    '@next/next/no-img-element': 'off',
-    'react-hooks/exhaustive-deps': 'off',
-    'unused-imports/no-unused-imports': 'warn',
-    'jsx-quotes': ['error', 'prefer-double'],
+    'indent': ['error', 2, { SwitchCase: 1, }],
+    'prefer-const': 'off',
+    'no-empty': 'warn',
+
+    'quotes': ['error', 'single', { avoidEscape: true, allowTemplateLiterals: true, }], // Prefer single quotes over double, ifnore template literals
+    'jsx-quotes': ['error', 'prefer-double'], // Prefer double quotes for jsx (classname="")
+
+    'react-hooks/set-state-in-effect': 'off',
+    'react-hooks/exhaustive-deps': 'off', // Disable react warn for hooks dependencies
+
+    'unused-imports/no-unused-imports': 'warn', // Remove unused imports
+
+    '@typescript-eslint/ban-ts-comment': 'off',
+    '@typescript-eslint/no-non-null-assertion': 'off',
+    '@typescript-eslint/no-empty-function': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-unused-vars': 'off',
     '@typescript-eslint/no-empty-object-type': 'off',
 
-    'quotes': ['error', 'single', {
-      avoidEscape: true,
-      allowTemplateLiterals: true,
-    }],
+    'import/first': 'error', // Reorder imports to first line
+    'import/newline-after-import': 'error', // Add one line after imports
+    'import/no-duplicates': 'error', // Merge different imports from single file into one
 
+    // '@next/next/no-img-element': 'off', // Disable nextjs error when using <img /> tag
+
+    'path/no-relative-imports': ['error', { maxDepth: 0, }], // Prefer absolute paths over relative. Only local paths (./) are allowed
+
+    // Sort import order
     'simple-import-sort/imports': ['warn', {
       groups: [
         // Side effect imports (css, etc)
@@ -66,10 +91,5 @@ export default tseslint.config([globalIgnores(['dist']), {
         ['^.+\\.(gif|png|svg|jpg)$'],
       ],
     }],
-
-    'path/no-relative-imports': ['error', {
-      maxDepth: 0,
-    }],
   }
-},
-])
+}])
